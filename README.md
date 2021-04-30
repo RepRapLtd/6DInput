@@ -18,3 +18,5 @@ Force sensing resistors in a bridge as the sensing elements
 
 Compatible with the Spacenav driver http://spacenav.sourceforge.net/
 
+See also https://github.com/mnesarco/HyperController
+
