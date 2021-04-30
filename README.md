@@ -20,3 +20,5 @@ Compatible with the Spacenav driver http://spacenav.sourceforge.net/
 
 See also https://github.com/mnesarco/HyperController
 
+And https://github.com/mattogodoy/mighty-mouse
+
