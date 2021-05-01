@@ -1,8 +1,3 @@
----
-title: README
-tags: []
----
-
 # Assembly Information
 This is a simple concept model to explore the feasibility of modeling the entire joystick assembly with an infinitely "scrolling" dial.
 
