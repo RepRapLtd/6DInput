@@ -1,8 +1,10 @@
-# 6DInput
+# 6DInputs
 
-## A Project to create an open-source 3D printed 6 DoF input device
+## A Project to create open-source 3D printed 6 DoF input devices
 
 Please fork this repository if you want to contribute, then send a pull request.
+
+Note the plurals in the heading. We would like several designs to be created here, not just one. Anyone can either contribute a new design or improve or correct an existing one.
 
 Please put your work in one of these folders, as appropriate, or create a folder under which to put the tree of your own work:
 
