@@ -6,7 +6,7 @@ KiCAD for the electronics
 
 Make the electronics an Arduino Uno shield
 
-Single sided PCB if possible, so easilly milled
+Single sided PCB if possible, so easily milled
 
 Force sensing resistors in a bridge as the sensing elements
 
