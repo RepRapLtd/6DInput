@@ -4,7 +4,7 @@
 
 Please fork this repository if you want to contribute, then send a pull request.
 
-Please put your work in one of these folders, as appropriate:
+Please put your work in one of these folders, as appropriate, or create a folder under which to put the tree of your own work:
 
  - Datasheets - useful commercial electronic or mechanical devices
 
