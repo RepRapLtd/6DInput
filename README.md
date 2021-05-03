@@ -27,6 +27,8 @@ Please put your work in one of these folders, as appropriate, or create a folder
 
 We would like to reserve the folder RepRapLtd for our own work, so we don't get confused...
 
+The hashtag for this project is #os3dmouse .
+
 
 
 
