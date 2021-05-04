@@ -29,7 +29,7 @@ void loop()
       Serial.print(" ");
       Serial.print(hallVoltage);
       digitalWrite(ledPin, 1);
-      delay(1000);
+      //delay(1000);
       digitalWrite(ledPin, 0);
     }
   }
