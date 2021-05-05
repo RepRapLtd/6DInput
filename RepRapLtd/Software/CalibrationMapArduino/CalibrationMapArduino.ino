@@ -5,14 +5,31 @@ Read Hall sensors when prompted and return the voltages.
 
 */
 
-int hallPin = A0;    // select the input pin for the potentiometer
+int hallPin0 = A0;    // select the input pin for the potentiometer
+int hallPin1 = A1;
+int hallPin2 = A2;
 int ledPin = 13;
 
 void setup()
 {
-  pinMode(hallPin, INPUT);
+  pinMode(hallPin0, INPUT);
+  pinMode(hallPin1, INPUT);
+  pinMode(hallPin2, INPUT);
   pinMode(ledPin, OUTPUT);
   Serial.begin(115200);
+}
+
+void SendHallVoltages()
+{
+  int hallVoltage = analogRead(hallPin0);
+  Serial.print(hallVoltage);
+  Serial.print(" ");
+  hallVoltage = analogRead(hallPin1);
+  Serial.print(hallVoltage);
+  //Serial.print(" ");
+  //hallVoltage = analogRead(hallPin2);
+  //Serial.print(hallVoltage);
+  Serial.println();  
 }
 
 void loop()
@@ -24,13 +41,7 @@ void loop()
       c = Serial.read();
     if(c != '\n')
     {
-      int hallVoltage = analogRead(hallPin);
-      Serial.print(hallVoltage);
-      Serial.print(" ");
-      Serial.print(hallVoltage);
-      digitalWrite(ledPin, 1);
-      //delay(1000);
-      digitalWrite(ledPin, 0);
+      SendHallVoltages();
     }
   }
 }

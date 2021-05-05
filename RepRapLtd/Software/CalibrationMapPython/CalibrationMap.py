@@ -16,13 +16,13 @@ def MoveRepRap(x, y, z, f, port):
  s += " F"
  s += str(f)
  s += "\n"
- print(s)
+ #print(s)
  port.write(str.encode(s))
 
 def GetArduinoVoltages(usb):
  usb.write(str.encode('v\n'))
  data = usb.readline()
- return data
+ return str(data.decode('ascii')).replace('\r', '').replace('\n', '')
 
 def OpenArduinoUSB():
  usb = serial.Serial(arduinoPort,115200,timeout=0.1)
@@ -35,12 +35,20 @@ def OpenRepRapUSB():
  return usb
 
 
-#aUSB = OpenArduinoUSB()
+aUSB = OpenArduinoUSB()
+#while True:
+# print(GetArduinoVoltages(aUSB))
+# time.sleep(0.5)
+
 rUSB = OpenRepRapUSB()
 MoveRepRap(0, 0, 0, 1000, rUSB)
-for i in range(10):
- MoveRepRap(i, 0, 0, 1000, rUSB)
- MoveRepRap(0, i, 0, 1000, rUSB)
-# print(GetArduinoVoltages(usb))
+for z in range(11):
+ MoveRepRap(0, 0, z, 1000, rUSB)
+ time.sleep(2)
+ for x in range(21):
+  MoveRepRap(x, 0, z, 1000, rUSB)
+  time.sleep(0.5)
+  print(GetArduinoVoltages(aUSB))
+
 
 
