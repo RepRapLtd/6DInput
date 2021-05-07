@@ -19,13 +19,12 @@ The Python program ([which is in this repository here](https://github.com/RepRap
 
 The Hall readings are done by an Arduino Uno. The program for that is [in this repository here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapArduino).
 
-Here is a video of the experiment in progress:
+There is a video of the experiment in progress in this directory: running-experiment.mp4 .
 
-![RepRap Setup](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/running-experiment.mp4)
 
 ## Results
 
-The raw integer values of the Hall voltages, H<sub>0</sub> and H<sub>1</sub> logged by the Arduino were summed and differenced.
+The raw integer values of the Hall voltages, H<sub>0</sub> and H<sub>1</sub> logged by the Arduino were summed and differenced as in this idea from a few days ago:
 
 ![Sum Diff Idea](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Ideas/hall-effect-idea.jpg)
 
