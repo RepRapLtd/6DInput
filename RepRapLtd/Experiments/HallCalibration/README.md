@@ -5,7 +5,7 @@ Adrian Bowyer
 
 ## The Idea
 
-![RepRap Setup](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Experiments/HallCalibration/reprap-setup.jpg)
+![RepRap Setup](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/reprap-setup.jpg)
 
 What we want to know is: can we digitise 6-degree-of-freedom movement by having that movement move magnets around near Hall-effect sensors?
 
@@ -15,13 +15,13 @@ The magnets [were these](https://www.amazon.co.uk/gp/product/B00TACH0P2), and th
 
 The picture above shows the arrangement - two sensors, H<sub>0</sub> and H<sub>1</sub>, were attached to the bed using Blu Tack 15 mm apart on the X axis at *x* = 5 and *x* = 20, and the magnet was attached to the carriage, again with Blu Tack.
 
-The Python program ([which is in this repository here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapPython) moved the RepRap machine from *x* = 0 to *x* = 25 in steps of 1mm taking readings from the Hall sensors at each step. It then moves up in *z* by 1mm and repeats, to a maximum of *z* = 10.
+The Python program ([which is in this repository here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapPython)) moved the RepRap machine from *x* = 0 to *x* = 25 in steps of 1mm taking readings from the Hall sensors at each step. It then moves up in *z* by 1mm and repeats, to a maximum of *z* = 10.
 
 The Hall readings are done by an Arduino Uno. The program for that is [in this repository here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapArduino).
 
 Here is a video of the experiment in progress:
 
-![RepRap Setup](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Experiments/HallCalibration/running-experiment.mp4)
+![RepRap Setup](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/running-experiment.mp4)
 
 ## Results
 
@@ -33,13 +33,13 @@ The idea behind this is that the sum should be roughly proportional to movement 
 
 Here are the matrices of sum and difference calibration values plotted by GNUPlot:
 
-![Sum and Diff](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Experiments/HallCalibration/sum-and-difference.png)
+![Sum and Diff](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/sum-and-difference.png)
 
 Remember the Hall sensors were at (5,0) and (20,0).
 
 Then the Python program repeated the movements, but this time attempted to calculate the *x* and *z* coordinates the magnet was at from the Hall readings by comparing the Hall sum and difference values to the two calibration matrices illustrated above. It used simple Euclidean distance in the sum/difference space to find the closest corresponding *x* and *z* values.  It got most right (zero Euclidean distance).  Here is a plot of the errors:
 
-![errors](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Experiments/HallCalibration/errors.png)
+![errors](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/errors.png)
 
 ## What next?
 
