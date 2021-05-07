@@ -1,4 +1,13 @@
 # Python code to create a calibration map from two Hall sensors and a magnet
+#
+# Adrian Bowyer
+# RepRap Ltd
+# https://reprapld.com
+#
+# 7 May 2021
+#
+# Licence: GPL
+#
 
 import serial
 import time
@@ -22,12 +31,14 @@ def MoveRepRap(x, y, z, f, port):
  #print(s)
  port.write(str.encode(s))
 
-def GetArduinoVoltages(usb):
+def GetHallSumAndDifference(usb):
  usb.write(str.encode('v\n'))
  data = usb.readline()
  data = str(data.decode('ascii'))
  data = re.findall('\d+', data)
- data = (int(data[0]), int(data[1]))
+ s = int(data[0]) + int(data[1])
+ d = int(data[0]) - int(data[1])
+ data = (s, d)
  return data
 
 def OpenArduinoUSB():
@@ -37,18 +48,19 @@ def OpenArduinoUSB():
 
 def OpenRepRapUSB():
  usb = serial.Serial(reprapPort,115200,timeout=0.1)
- #time.sleep(3) # Why so long???
  return usb
 
 def LogReadings():
  while True:
-  print(GetArduinoVoltages(aUSB))
+  print(GetHallSumAndDifference(aUSB))
   time.sleep(0.5)
 
 def V2Length(a, b):
  d0 = a[0] - b[0]
  d1 = a[1] - b[1]
  return maths.sqrt(d0*d0 + d1*d1)
+
+# Really dumb search function...
 
 def FindXZ(data, hallMatrix):
  xz = (-1, -1)
@@ -61,8 +73,6 @@ def FindXZ(data, hallMatrix):
    if dist < closeValue:
     closeValue = dist
     xz = (x, z)
-    if closeValue < 1:
-     return xz
  return xz
 
 
@@ -86,7 +96,7 @@ for z in range(zMax + 1):
  for x in range(xMax + 1):
   MoveRepRap(x, 0, z, 1000, rUSB)
   time.sleep(0.5)
-  data = GetArduinoVoltages(aUSB)
+  data = GetHallSumAndDifference(aUSB)
   print(data[0], ' ', data[1])
   file0.write(str(data[0]))
   file1.write(str(data[1]))
@@ -111,12 +121,13 @@ for z in range(zMax + 1):
  for x in range(xMax + 1):
   MoveRepRap(x, 0, z, 1000, rUSB)
   time.sleep(0.5)
-  data = GetArduinoVoltages(aUSB)
+  data = GetHallSumAndDifference(aUSB)
   xz = FindXZ(data, hallMatrix)
   e = V2Length(xz, (x, z))
   errorVector.append(e)
   errorFile.write(str(e))
-  print(x, " ", z, " error: ", e)
+  if e > 0.1:
+   print(x, " ", z, " error: ", e)
   if x < xMax:
    errorFile.write(",")
  errorFile.write("\n")
