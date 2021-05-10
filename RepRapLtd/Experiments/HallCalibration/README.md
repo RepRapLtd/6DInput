@@ -40,9 +40,15 @@ Then the Python program repeated the movements, but this time attempted to calcu
 
 ![errors](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/errors.png)
 
+It's clear from this that we are being a bit ambitious about range. There are flat areas in the sum and difference maps that will lead to uncertainty about the position of the magnet in space. So we repeated the experiment with the hall sensors 10 mm apart and with a *z* range of 5mm. Here is the error map:
+
+![small errors](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/small-errors.png)
+
+The Hall sensors were at (2.5, 0) and (12.5, 0). As you can see the positioning was perfect in between the two sensors, with zero error, and there were small errors just outside the range.
+
 ## What next?
 
-The results are reasonably encouraging, particularly when we remember that, for a working system, the Hall readings could be taken many times a second and a rolling average kept to smooth them.
+The results are encouraging, particularly when we remember that, for a working system, the Hall readings could be taken many times a second and a rolling average kept to smooth them.
 
 Next we will try a single magnet moving in a cylindrical volume above three Hall sensors arranged at the vertices of an equilateral triangle underneath to see if we can recover three degrees of freedom of movement.
 

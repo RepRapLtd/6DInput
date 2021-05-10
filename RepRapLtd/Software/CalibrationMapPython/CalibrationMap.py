@@ -82,8 +82,8 @@ aUSB = OpenArduinoUSB()
 rUSB = OpenRepRapUSB()
 MoveRepRap(0, 0, 0, 1000, rUSB)
 
-zMax = 10
-xMax = 25
+zMax = 5
+xMax = 15
 file0 = open('../../Experiments/HallCalibration/hall-calibration0.csv', 'w')
 file1 = open('../../Experiments/HallCalibration/hall-calibration1.csv', 'w')
 
