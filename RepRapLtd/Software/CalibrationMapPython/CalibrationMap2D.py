@@ -1,4 +1,4 @@
-# Python code to create a calibration map from two Hall sensors and a magnet
+# Python code to create a 2D calibration map from two Hall sensors and a magnet
 #
 # Adrian Bowyer
 # RepRap Ltd

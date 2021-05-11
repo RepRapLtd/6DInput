@@ -5,6 +5,8 @@ Read Hall sensors when prompted and return the voltages.
 
 */
 
+#define THREE_SENSORS
+
 int hallPin0 = A0;    // select the input pin for the potentiometer
 int hallPin1 = A1;
 int hallPin2 = A2;
@@ -26,9 +28,11 @@ void SendHallVoltages()
   Serial.print(" ");
   hallVoltage = analogRead(hallPin1);
   Serial.print(hallVoltage);
-  //Serial.print(" ");
-  //hallVoltage = analogRead(hallPin2);
-  //Serial.print(hallVoltage);
+#ifdef THREE_SENSORS
+  Serial.print(" ");
+  hallVoltage = analogRead(hallPin2);
+  Serial.print(hallVoltage);
+#endif
   Serial.println();  
 }
 
