@@ -79,6 +79,44 @@ def FindXYZ(data, offset, hallTensor):
      xyz = VAdd((x, y, z), offset)
  return xyz
 
+def WriteHallTensor(hallTensor):
+ hallTensorFile = open('../../Experiments/HallCalibration/hallTensor.tns', 'w')
+ hallTensorFile.write(str(len(hallTensor)))
+ hallTensorFile.write(" ")
+ hallTensorFile.write(str(len(hallTensor[0])))
+ hallTensorFile.write(" ")
+ hallTensorFile.write(str(len(hallTensor[0][0])))
+ hallTensorFile.write("\n")
+ for hallMatrix in hallTensor:
+  for hallVector in hallMatrix:
+   for hallValues in hallVector:
+    for value in hallValues:
+     hallTensorFile.write(str(value))
+     hallTensorFile.write(" ")
+    hallTensorFile.write("\n")
+
+
+
+def ReadHallTensor():
+ hallTensorFile = open('../../Experiments/HallCalibration/hallTensor.tns', 'r')
+ lengths = hallTensorFile.readline()
+ lengths = str(lengths.decode('ascii'))
+ lengths = re.findall('\d+', lengths)
+ hallTensor = []
+ for z in range(lengths[0]):
+  hallMatrix = []
+  for y in range(lengths[1]):
+   hallVector = []
+   for x in range(lengths[2]):
+    data = hallTensorFile.readline()
+    data = str(data.decode('ascii'))
+    data = re.findall('\d+', data)
+    data = (int(data[0]), int(data[1]), int(data[2]))
+    hallVector.append(data)
+   hallMatrix.append(hallVector)
+  hallTensor.append(hallMatrix)
+ return hallTensor
+
 centre = (72, 46, 2.75)
 aUSB = OpenArduinoUSB()
 #LogReadings()
@@ -89,30 +127,37 @@ MoveRepRap(centre, 1000, rUSB)
 rMax = 7
 zMax = 7
 
-hallTensor = []
 
 offset = (-rMax, -rMax, 0)
 
-for z in range(zMax + 1):
- hallMatrix = []
- MoveRepRap(VAdd(centre, (-rMax, -rMax, z)), 1000, rUSB)
- time.sleep(2)
- for y in range(-rMax, rMax+1):
-  hallVector = []
-  MoveRepRap(VAdd(centre, (-rMax, y, z)), 1000, rUSB)
+scan = True
+
+if scan:
+ hallTensor = []
+ for z in range(zMax + 1):
+  hallMatrix = []
+  MoveRepRap(VAdd(centre, (-rMax, -rMax, z)), 1000, rUSB)
   time.sleep(2)
-  for x in range(-rMax, rMax+1):
-   MoveRepRap(VAdd(centre, (x, y, z)), 1000, rUSB)
-   time.sleep(0.5)
-   r2 = x*x + y*y
-   if r2 > rMax*rMax:
-    hallVector.append((-1, -1, -1))
-   else:
-    data = Get3HallReadings(aUSB)
-    print(x, " ", y, " ", z, " ", data)
-    hallVector.append(data)
-  hallMatrix.append(hallVector)
- hallTensor.append(hallMatrix)
+  for y in range(-rMax, rMax+1):
+   hallVector = []
+   MoveRepRap(VAdd(centre, (-rMax, y, z)), 1000, rUSB)
+   time.sleep(2)
+   for x in range(-rMax, rMax+1):
+    MoveRepRap(VAdd(centre, (x, y, z)), 1000, rUSB)
+    time.sleep(0.5)
+    r2 = x*x + y*y
+    if r2 > rMax*rMax:
+     hallVector.append((-1, -1, -1))
+    else:
+     data = Get3HallReadings(aUSB)
+     print(x, " ", y, " ", z, " ", data)
+     hallVector.append(data)
+   hallMatrix.append(hallVector)
+  hallTensor.append(hallMatrix)
+ WriteHallTensor(hallTensor)
+else:
+ hallTensor = ReadHallTensor()
+
 
 errorFile = open('../../Experiments/HallCalibration/xyzErrors.gnu', 'w')
 
