@@ -5,7 +5,7 @@ Adrian Bowyer
 
 ## The Idea
 
-![RepRap Setup](https://raw.githubusercontent.com/RepRapLtd/6DInput/main/RepRapLtd/Experiments/HallCalibration/reprap-setup.jpg)
+![RepRap Setup](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/reprap-setup.jpg)
 
 What we wanted to know is: can we digitise 6-degree-of-freedom movement by having that movement move magnets around near Hall-effect sensors?
 
