@@ -54,7 +54,7 @@ The next experiment was to attempt to find the position of the magnet in a three
 
 Once again the RepRap drove the magnet about above the sensors logging the three Hall voltages at each step. This time it moved in a rectangular box 14x14x7 mm in size in 1mm steps in each direction, which is to say a box that contained a 7mm radius cylinder of height 7mm - slightly outside the circle of centres of the sensors.  Readings were only taken within the cylinder.
 
-The system then repeated the movements, attempting to deduce the position of the RepRap carrige from the Hall readings as before.  No sums and differences were used for this; we just used the raw Hall voltages digitised by the Arduino's analog to digital converters to lie in the range [0, 1023]. Here are eight plots of the errors at each height.
+The system then repeated the movements, attempting to deduce the position of the RepRap carriage from the Hall readings as before.  No sums and differences were used for this; we just used the raw Hall voltages digitised by the Arduino's analog to digital converters to lie in the range [0, 1023]. Here are eight plots of the errors at each height.
 
 ![Sum and Diff](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/HallCalibration/errors3D-small.png)
 
