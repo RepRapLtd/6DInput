@@ -119,7 +119,7 @@ def ReadHallTensor():
 
 centre = (72, 46, 2.75)
 aUSB = OpenArduinoUSB()
-#LogReadings()
+LogReadings()
 
 rUSB = OpenRepRapUSB()
 MoveRepRap(centre, 1000, rUSB)
