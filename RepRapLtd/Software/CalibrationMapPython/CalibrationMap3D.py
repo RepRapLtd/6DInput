@@ -48,9 +48,12 @@ def OpenRepRapUSB():
  usb = serial.Serial(reprapPort,115200,timeout=0.1)
  return usb
 
-def LogReadings():
+def LogReadings(a):
  while True:
-  print(Get3HallReadings(aUSB))
+  if a is 1:
+   print(Get3HallReadings(aUSB)[0])
+  else:
+   print(Get3HallReadings(aUSB))
   time.sleep(0.5)
 
 def V2Length(a, b):
@@ -119,7 +122,7 @@ def ReadHallTensor():
 
 centre = (72, 46, 2.75)
 aUSB = OpenArduinoUSB()
-LogReadings()
+LogReadings(1)
 
 rUSB = OpenRepRapUSB()
 MoveRepRap(centre, 1000, rUSB)
