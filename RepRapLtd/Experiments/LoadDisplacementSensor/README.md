@@ -42,5 +42,9 @@ Here is the resulting force-voltage graph showing a full cycle starting with 700
 
 As the springs are plastic some hysterisis would be expected, and you can see that has occured. The red line and the formula is a best-fit linear approximation to the results.
 
+## Application
+
+Three of these (or something similar) stacked would be needed to measure the three translational forces in a 6-degree-of-freedom printed spacemouse. A design for measuring torque would also be needed for the three rotations.
+
 
 
