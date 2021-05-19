@@ -21,7 +21,7 @@ The picture at the top shows the resulting design for the sensor. On the left is
 
 You can see the three wires of the Hall sensor (orange in the photograph; blue in the CAD design). The magnet is embedded in the opposite projection. Here is a CAD picture showing it the other way up; the magnet is green:
 
-![magnet in sensor](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/LoadDisplacementSensor/sensor-other-half-cad.png)
+![magnet in sensor](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/LoadDisplacementSensor/sensor-other-half-cad.jpg)
 
 The four thin rectangular sections form the spring. The four small circular holes are mounting holes for self-tapping M2 screws.
 
