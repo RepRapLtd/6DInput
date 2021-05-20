@@ -46,5 +46,11 @@ As the springs are plastic some hysterisis would be expected, and you can see th
 
 Three of these (or something similar) stacked would be needed to measure the three translational forces in a 6-degree-of-freedom printed spacemouse. A design for measuring torque would also be needed for the three rotations.
 
+## What next?
+
+We have reduced the zero-force gap between the Hall sensor and the magnet to 3mm in the latest version in the CAD file. If you look at the top graph above you will see that this should increase both linearity and sensitivity.
+
+We will design a similar device to measure torque.
+
 
 
