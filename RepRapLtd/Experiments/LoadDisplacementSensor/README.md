@@ -40,7 +40,7 @@ Here is the resulting force-voltage graph showing a full cycle starting with 700
 
 ![test graph](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/LoadDisplacementSensor/force-voltage-graph.png)
 
-As the springs are plastic some hysterisis would be expected, and you can see that has occured. The red line and the formula is a best-fit linear approximation to the results.
+As the springs are plastic some hysterisis would be expected, and you can see that has occured. The red line and the formula are a best-fit linear approximation to the results.
 
 ## Application
 
