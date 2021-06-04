@@ -1,3 +1,21 @@
+'''
+Test program for the open-source 3D mouse
+
+Move a cube around on the screen.
+
+Adrian Bowyer
+RepRap Ltd
+
+4 June 2021
+
+https://reprapltd.com
+
+Licence: GPL
+
+Uses code from https://stackoverflow.com/questions/16263727/3d-cube-didnt-show-correctly-writen-by-pyglet
+
+'''
+
 import pyglet
 from pyglet.gl import *
 from pyglet import window
@@ -5,7 +23,6 @@ import serial
 import re
 import time
 
-# Based on https://stackoverflow.com/questions/16263727/3d-cube-didnt-show-correctly-writen-by-pyglet
 
 # return a ctype array - GLfloat, GLuint
 
