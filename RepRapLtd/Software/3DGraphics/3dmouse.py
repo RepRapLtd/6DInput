@@ -23,9 +23,6 @@ import serial
 import re
 import time
 
-
-# return a ctype array - GLfloat, GLuint
-
 arduinoPort = '/dev/ttyUSB0'
 
 class OS3DMouse:
@@ -48,6 +45,7 @@ class OS3DMouse:
   return int(v/4)
 
 
+# return a ctype array - GLfloat, GLuint
 
 def vector(type, *args):
     return (type*len(args))(*args)
