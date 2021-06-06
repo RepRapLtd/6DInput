@@ -32,7 +32,7 @@ Here is the result of loading and unloading the device:
 
 ![test graph](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Experiments/ForceSensor/slider-force-voltage-graph.png)
 
-As in our previous experiments, there is a certain amount of hysteresis, as would be expected with a plastic spring. But as you will see this does not impeed the performance of the sensor. The red line is the least-squares linear fit, which has the equation shown.
+As in our previous experiments, there is a certain amount of hysteresis, as would be expected with a plastic spring. But as you will see this does not impede the performance of the sensor. The red line is the least-squares linear fit, which has the equation shown.
 
 We then wrote a Python program to read the force sensor and to use its output to rotate a cube in 3D on the screen. This worked, and the sensor felt good in use; letting go of the sensor stopped the cube moving; pushing and pulling rotated the cube in either direction; and the harder the push or pull the faster it moved.
 

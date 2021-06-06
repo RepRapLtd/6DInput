@@ -29,3 +29,9 @@ The hashtag for this project is `#os3dmouse`.
 ### Licence
 
 [GPLv3](LICENCE)
+
+### See also
+
+ - [HyperController](https://github.com/mnesarco/HyperController)
+
+ - [Mighty Mouse](https://github.com/mattogodoy/mighty-mouse)
