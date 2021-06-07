@@ -34,11 +34,11 @@ Here is the result of loading and unloading the device:
 
 As in our previous experiments, there is a certain amount of hysteresis, as would be expected with a plastic spring. But as you will see this does not impede the performance of the sensor. The red line is the least-squares linear fit, which has the equation shown.
 
-We then wrote a Python program to read the force sensor and to use its output to rotate a cube in 3D on the screen. This worked, and the sensor felt good in use; letting go of the sensor stopped the cube moving; pushing and pulling rotated the cube in either direction; and the harder the push or pull the faster it moved.
+We made two more sensors, giving us three in total. Then we wrote a Python program to read them and to use their output to rotate a cube about the *X, Y* and *Z* axes in 3D on the screen. This worked, and the sensor felt good in use; letting go of the sensors stopped the cube moving; pushing and pulling rotated the cube in all directions; and the harder the push or pull the faster it moved.
 
-There is a video of this working [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/1D-spacemouse-test.mp4) and here is a still from that:
+There is a video of this working [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/os3dmouse.mp4) and here is a still from that:
 
-![1D animation](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/1D-spacemouse-test.jpg)
+![1D animation](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/3D-spacemouse-test.jpg)
 
 The Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/3DGraphics/3dmouse.py) and the Arduino program that reads the Hall sensor and talks to the Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapArduino/CalibrationMapArduino.ino).
 

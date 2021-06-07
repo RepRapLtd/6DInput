@@ -30,7 +30,7 @@ class OS3DMouse:
  def __init__(self, port):
   self.usb = serial.Serial(port,115200,timeout=0.1)
   time.sleep(3) # Why so long???
-  self.v0 = self.Get3HallReadings()[0]
+  self.v0 = self.Get3HallReadings()
 
  def Get3HallReadings(self):
   self.usb.write(str.encode('v\n'))
@@ -41,8 +41,10 @@ class OS3DMouse:
   return data
 
  def Movement(self):
-  v = self.v0 - self.Get3HallReadings()[0]
-  return int(v/4)
+  vX = int((self.v0[0] - self.Get3HallReadings()[0])/8)
+  vY = int((self.v0[1] - self.Get3HallReadings()[1])/8)
+  vZ = int((self.v0[2] - self.Get3HallReadings()[2])/8)
+  return (vX, vY, vZ)
 
 
 # return a ctype array - GLfloat, GLuint
@@ -56,18 +58,27 @@ class model:
         self.vertices = vector(GLfloat, *vertices)
         self.colorMatrix = vector(GLfloat, *colorMatrix)
         self.index = vector(GLuint, *index)
-        self.angle = 0
+        self.angleX = 0
+        self.angleY = 0
+        self.angleZ = 0
         self.mouse = mouse
 
     def update(self):
-        self.angle += self.mouse.Movement()
-        self.angle %= 360
+        movement = self.mouse.Movement()
+        self.angleX += movement[0]
+        self.angleX %= 360
+        self.angleY += movement[1]
+        self.angleY %= 360
+        self.angleZ += movement[2]
+        self.angleZ %= 360
 
     def draw(self):
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
 
-        glRotatef(self.angle, 1, 1, 1)
+        glRotatef(self.angleX, 1, 0, 0)
+        glRotatef(self.angleY, 0, 1, 0)
+        glRotatef(self.angleZ, 0, 0, 1)
 
         glEnableClientState(GL_VERTEX_ARRAY)
         glEnableClientState(GL_COLOR_ARRAY)
@@ -106,14 +117,14 @@ win = window.Window(fullscreen=False, vsync=True, resizable=True, height=600, wi
 mWorld = world()
 
 cube = (
-    1, 1, 1, #0
-    -1, 1, 1, #1
-    -1, -1, 1, #2
-    1, -1, 1, #3
-    1, 1, -1, #4
-    -1, 1, -1, #5
-    -1, -1, -1, #6
-    1, -1, -1 #7
+    3, 3, 3, #0
+    -3, 3, 3, #1
+    -3, -3, 3, #2
+    3, -3, 3, #3
+    3, 3, -3, #4
+    -3, 3, -3, #5
+    -3, -3, -3, #6
+    3, -3, -3 #7
 )
 
 
