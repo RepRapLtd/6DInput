@@ -246,4 +246,115 @@ Wire Wire Line
 Wire Wire Line
 	4975 3575 5150 3575
 Connection ~ 4975 3925
+$Comp
+L Connector_Generic:Conn_01x02 J9
+U 1 1 60BE4CB8
+P 2750 3750
+F 0 "J9" V 2714 3562 50  0000 R CNN
+F 1 "Conn_01x02" V 2623 3562 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2750 3750 50  0001 C CNN
+F 3 "~" H 2750 3750 50  0001 C CNN
+	1    2750 3750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J8
+U 1 1 60BE5F6E
+P 2375 3750
+F 0 "J8" V 2339 3562 50  0000 R CNN
+F 1 "Conn_01x02" V 2248 3562 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2375 3750 50  0001 C CNN
+F 3 "~" H 2375 3750 50  0001 C CNN
+	1    2375 3750
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J7
+U 1 1 60BE658F
+P 2025 3750
+F 0 "J7" V 1989 3562 50  0000 R CNN
+F 1 "Conn_01x02" V 1898 3562 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2025 3750 50  0001 C CNN
+F 3 "~" H 2025 3750 50  0001 C CNN
+	1    2025 3750
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	2850 3950 2850 3975
+Wire Wire Line
+	2850 3975 3250 3975
+Wire Wire Line
+	2475 3950 2475 4075
+Wire Wire Line
+	2475 4075 3250 4075
+Wire Wire Line
+	2125 3950 2125 4175
+Wire Wire Line
+	2125 4175 3250 4175
+Wire Wire Line
+	2750 3950 2750 4025
+Wire Wire Line
+	2750 4025 2375 4025
+Wire Wire Line
+	2375 4025 2375 3950
+Wire Wire Line
+	2375 4025 2025 4025
+Wire Wire Line
+	2025 4025 2025 3950
+Connection ~ 2375 4025
+$Comp
+L power:GND #PWR0105
+U 1 1 60BED2CC
+P 2025 4275
+F 0 "#PWR0105" H 2025 4025 50  0001 C CNN
+F 1 "GND" H 2030 4102 50  0000 C CNN
+F 2 "" H 2025 4275 50  0001 C CNN
+F 3 "" H 2025 4275 50  0001 C CNN
+	1    2025 4275
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2025 4025 2025 4275
+Connection ~ 2025 4025
+$Comp
+L Device:R_Small R1
+U 1 1 60BEF562
+P 2950 5200
+F 0 "R1" H 3009 5246 50  0000 L CNN
+F 1 "180R" H 3009 5155 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric" H 2950 5200 50  0001 C CNN
+F 3 "~" H 2950 5200 50  0001 C CNN
+	1    2950 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 5075 2950 5075
+Wire Wire Line
+	2950 5075 2950 5100
+$Comp
+L Connector_Generic:Conn_01x02 J10
+U 1 1 60BF1843
+P 2750 5525
+F 0 "J10" H 2668 5200 50  0000 C CNN
+F 1 "Conn_01x02" H 2668 5291 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 2750 5525 50  0001 C CNN
+F 3 "~" H 2750 5525 50  0001 C CNN
+	1    2750 5525
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	2950 5300 2950 5425
+$Comp
+L power:GND #PWR0106
+U 1 1 60BF35E8
+P 2950 5650
+F 0 "#PWR0106" H 2950 5400 50  0001 C CNN
+F 1 "GND" H 2955 5477 50  0000 C CNN
+F 2 "" H 2950 5650 50  0001 C CNN
+F 3 "" H 2950 5650 50  0001 C CNN
+	1    2950 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 5525 2950 5650
 $EndSCHEMATC
