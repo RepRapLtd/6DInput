@@ -22,6 +22,7 @@ from pyglet import window
 import serial
 import re
 import time
+import numpy as np
 
 arduinoPort = '/dev/ttyUSB0'
 
@@ -37,14 +38,13 @@ class OS3DMouse:
   data = self.usb.readline()
   data = str(data.decode('ascii'))
   data = re.findall('\d+', data)
-  data = (int(data[0]), int(data[1]), int(data[2]))
+  data =  np.array([int(data[0]), int(data[1]), int(data[2])])
   return data
 
  def Movement(self):
-  vX = int((self.v0[0] - self.Get3HallReadings()[0])/8)
-  vY = int((self.v0[1] - self.Get3HallReadings()[1])/8)
-  vZ = int((self.v0[2] - self.Get3HallReadings()[2])/8)
-  return (vX, vY, vZ)
+  v = np.subtract(self.v0, self.Get3HallReadings())
+  v = np.multiply(v, 1.0/8.0).astype(int)
+  return v
 
 
 # return a ctype array - GLfloat, GLuint
@@ -56,34 +56,30 @@ def vector(type, *args):
 class model:
     def __init__(self, vertices, colorMatrix, index, mouse):
         self.vertices = vector(GLfloat, *vertices)
-        self.colorMatrix = vector(GLfloat, *colorMatrix)
+        self.colourMatrix = vector(GLfloat, *colorMatrix)
         self.index = vector(GLuint, *index)
-        self.angleX = 0
-        self.angleY = 0
-        self.angleZ = 0
+        self.angle = np.array([0, 0, 0])
+        self.position = np.array([0, 0, 0])
         self.mouse = mouse
 
     def update(self):
-        movement = self.mouse.Movement()
-        self.angleX += movement[0]
-        self.angleX %= 360
-        self.angleY += movement[1]
-        self.angleY %= 360
-        self.angleZ += movement[2]
-        self.angleZ %= 360
+        self.angle = np.remainder(np.add(self.angle, self.mouse.Movement()), 360)
+        #self.position = np.add(self.position, self.mouse.Movement())
+
 
     def draw(self):
         glMatrixMode(GL_MODELVIEW)
         glLoadIdentity()
 
-        glRotatef(self.angleX, 1, 0, 0)
-        glRotatef(self.angleY, 0, 1, 0)
-        glRotatef(self.angleZ, 0, 0, 1)
+        glRotatef(self.angle[0], 1, 0, 0)
+        glRotatef(self.angle[1], 0, 1, 0)
+        glRotatef(self.angle[2], 0, 0, 1)
+        #glTranslatef(self.position[0], self.position[1], self.position[2])
 
         glEnableClientState(GL_VERTEX_ARRAY)
         glEnableClientState(GL_COLOR_ARRAY)
 
-        glColorPointer(3, GL_FLOAT, 0, self.colorMatrix)
+        glColorPointer(3, GL_FLOAT, 0, self.colourMatrix)
         glVertexPointer(3, GL_FLOAT, 0, self.vertices)
         glDrawElements(GL_QUADS, len(self.index), GL_UNSIGNED_INT, self.index)
 
@@ -128,7 +124,7 @@ cube = (
 )
 
 
-color = (
+colour = (
     1, 0, 0,
     1, 0, 0,
     1, 0, 0,
@@ -149,7 +145,7 @@ index = (
 )
 
 mouse = OS3DMouse(arduinoPort)
-obj = model(cube, color, index, mouse)
+obj = model(cube, colour, index, mouse)
 mWorld.addModel(obj)
 
 @win.event

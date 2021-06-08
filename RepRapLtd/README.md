@@ -42,7 +42,19 @@ There is a video of this working [here](https://github.com/RepRapLtd/6DInput/tre
 
 The Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/3DGraphics/3dmouse.py) and the Arduino program that reads the Hall sensor and talks to the Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapArduino/CalibrationMapArduino.ino).
 
+## Update
 
+We realised from the success of this that it would be easy to design a 2D joystick that used the same principles.  This is the result:
 
+![joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/joystick.jpg)
 
+And here is the FreeCAD design (which is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Mechanics/2D-joystick-V1.FCStd) in the repository):
+
+![cad joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/joystick-cad.jpg)
+
+Once again the magnets are green and the Hall sensors are blue.  The central block has a square spring attaching it to the base (red for clarity, but printed like the other two parts).
+
+The device connected to the Python program without modifying that (though it has now been updated to use numpy vector arithmetic for neatness and brevity). It worked well, allowing the cube to be tumbled on the screen as in the video above.
+
+This joystick may form part of the final open-source 3D mouse, but it may also be useful to people in its own right as it is very easy to print and the cost of the components is very small.
 
