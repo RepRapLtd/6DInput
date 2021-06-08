@@ -50,7 +50,7 @@ We realised from the success of this that it would be easy to design a 2D joysti
 
 And here is the FreeCAD design (which is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Mechanics/2D-joystick-V1.FCStd) in the repository):
 
-![cad joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/joystick-cad.jpg)
+![cad joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/joystick-cad.png)
 
 Once again the magnets are green and the Hall sensors are blue.  The central block has a square spring attaching it to the base (red for clarity, but printed like the other two parts).
 
