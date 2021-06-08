@@ -52,7 +52,9 @@ And here is the FreeCAD design (which is [here](https://github.com/RepRapLtd/6DI
 
 ![cad joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/joystick-cad.png)
 
-Once again the magnets are green and the Hall sensors are blue.  The central block has a square spring attaching it to the base (red for clarity, but printed like the other two parts).  The holes are for self-tapping M2 screws to attach each part of the device to a hadle or a solid base.
+Once again the magnets are green and the Hall sensors are blue.  The central block has a square spring attaching it to the base (red for clarity, but printed like the other two parts).  The holes are for self-tapping M2 screws to attach each part of the device to a handle or a solid base.
+
+If you make one glue the magnets in (Araldite, not cyanoacrylate) with the same pole facing outwards from the sprung block. This is tricky because the fields pull them the other way round and they tend to flip over. Force them right and clamp them while the glue sets.
 
 The device connected to the Python program without modifying that (though it has now been updated to use numpy vector arithmetic for neatness and brevity). It worked well, allowing the cube to be tumbled on the screen as in the video above.
 
