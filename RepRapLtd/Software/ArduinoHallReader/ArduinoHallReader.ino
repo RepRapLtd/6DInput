@@ -32,6 +32,11 @@ void SendHallVoltages(int number)
 {
   int hallVoltage;
   
+  if(number <= 0)
+    number = 1;
+  if(number > pins)
+    number = pins;
+  
   for(int p = 0; p < number; p++)
   {
     hallVoltage = analogRead(hallPin[p]);
@@ -50,8 +55,7 @@ void loop()
     if(number != '\n')
     {
       number = number - '0';
-      if(number > 0 && number <= 6)
-        SendHallVoltages(number);
+      SendHallVoltages(number);
     }
     while(Serial.available() > 0)
       number = Serial.read();
