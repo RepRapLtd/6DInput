@@ -40,7 +40,7 @@ There is a video of this working [here](https://github.com/RepRapLtd/6DInput/tre
 
 ![1D animation](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/3D-spacemouse-test.jpg)
 
-The Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/3DGraphics/3dmouse.py) and the Arduino program that reads the Hall sensor and talks to the Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/CalibrationMapArduino/CalibrationMapArduino.ino).
+The Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/3DGraphics/3dmouse.py) and the Arduino program that reads the Hall sensor and talks to the Python program is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Software/ArduinoHallReader/ArduinoHallReader.ino).
 
 ## Update
 
