@@ -31,10 +31,10 @@ class OS3DMouse:
  def __init__(self, port):
   self.usb = serial.Serial(port,115200,timeout=0.1)
   time.sleep(3) # Why so long???
-  self.v0 = self.Get3HallReadings()
+  self.v0 = self.GetHallReadings()
 
- def Get3HallReadings(self):
-  self.usb.write(str.encode('v\n'))
+ def GetHallReadings(self):
+  self.usb.write(str.encode('3\n'))
   data = self.usb.readline()
   data = str(data.decode('ascii'))
   data = re.findall('\d+', data)
@@ -42,7 +42,7 @@ class OS3DMouse:
   return data
 
  def Movement(self):
-  v = np.subtract(self.v0, self.Get3HallReadings())
+  v = np.subtract(self.v0, self.GetHallReadings())
   v = np.multiply(v, 1.0/8.0).astype(int)
   return v
 
