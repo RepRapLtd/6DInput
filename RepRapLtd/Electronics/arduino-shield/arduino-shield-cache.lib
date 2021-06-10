@@ -58,39 +58,11 @@ X ~ 2 0 -100 30 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# power_+5V
+# arduino-shield-rescue_Arduino_UNO_R3_Shield-reprapltd-kicad
 #
-DEF power_+5V #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -150 50 H I C CNN
-F1 "power_+5V" 0 140 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 2 0 1 0 -30 50 0 100 N
-P 2 0 1 0 0 0 0 100 N
-P 2 0 1 0 0 100 30 50 N
-X +5V 1 0 0 0 U 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# power_GND
-#
-DEF power_GND #PWR 0 0 Y Y 1 F P
-F0 "#PWR" 0 -250 50 H I C CNN
-F1 "power_GND" 0 -150 50 H V C CNN
-F2 "" 0 0 50 H I C CNN
-F3 "" 0 0 50 H I C CNN
-DRAW
-P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
-X GND 1 0 0 0 D 50 50 1 1 W N
-ENDDRAW
-ENDDEF
-#
-# reprapltd-kicad_Arduino_UNO_R3_Shield
-#
-DEF reprapltd-kicad_Arduino_UNO_R3_Shield A 0 20 Y Y 1 F N
+DEF arduino-shield-rescue_Arduino_UNO_R3_Shield-reprapltd-kicad A 0 20 Y Y 1 F N
 F0 "A" -400 925 50 H V L BNN
-F1 "reprapltd-kicad_Arduino_UNO_R3_Shield" 200 -1050 50 H V L TNN
+F1 "arduino-shield-rescue_Arduino_UNO_R3_Shield-reprapltd-kicad" 200 -1050 50 H V L TNN
 F2 "reprapltd-kicad:Arduino_UNO_R3_Shield" 0 0 50 H I C CIN
 F3 "" 0 0 50 H I C CNN
 $FPLIST
@@ -130,6 +102,34 @@ X GND 6 0 -1100 100 U 50 50 1 1 W
 X GND 7 100 -1100 100 U 50 50 1 1 W
 X VIN 8 -100 1000 100 D 50 50 1 1 W
 X A0 9 500 0 100 L 50 50 1 1 B
+ENDDRAW
+ENDDEF
+#
+# power_+5V
+#
+DEF power_+5V #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_+5V" 0 140 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X +5V 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_GND
+#
+DEF power_GND #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -250 50 H I C CNN
+F1 "power_GND" 0 -150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 6 0 1 0 0 0 0 -50 50 -50 0 -100 -50 -50 0 -50 N
+X GND 1 0 0 0 D 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #

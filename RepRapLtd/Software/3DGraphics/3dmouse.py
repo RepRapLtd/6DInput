@@ -26,6 +26,10 @@ import numpy as np
 
 arduinoPort = '/dev/ttyUSB0'
 
+# Swap directions if needs be
+
+sense = np.array([1, -1, -1])
+
 class OS3DMouse:
 
  def __init__(self, port):
@@ -43,6 +47,7 @@ class OS3DMouse:
 
  def Movement(self):
   v = np.subtract(self.v0, self.GetHallReadings())
+  v = np.multiply(v, sense)
   v = np.multiply(v, 1.0/8.0).astype(int)
   return v
 

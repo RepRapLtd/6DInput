@@ -14,7 +14,7 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L reprapltd-kicad:Arduino_UNO_R3_Shield A1
+L arduino-shield-rescue:Arduino_UNO_R3_Shield-reprapltd-kicad A1
 U 1 1 60BE011A
 P 3750 4375
 F 0 "A1" H 3750 5556 50  0000 C CNN

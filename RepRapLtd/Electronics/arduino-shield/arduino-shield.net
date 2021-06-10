@@ -1,8 +1,8 @@
 (export (version D)
   (design
-    (source /home/ensab/Desktop/rrlOwncloud/RepRapLtd/Engineering/Internal-Projects/6DInput/RepRapLtd/Electronics/arduino-shield/arduino-shield.sch)
-    (date "Mon Jun  7 16:52:19 2021")
-    (tool "Eeschema 5.1.6-c6e7f7d~87~ubuntu18.04.1")
+    (source /home/sally/ownCloud/RepRapLtd/Engineering/Internal-Projects/6DInput/RepRapLtd/Electronics/arduino-shield/arduino-shield.sch)
+    (date "Thu 10 Jun 2021 15:22:12 BST")
+    (tool "Eeschema 5.1.10-88a1d61d58~88~ubuntu20.04.1")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
         (title)
@@ -19,7 +19,7 @@
       (value Arduino_UNO_R3_Shield)
       (footprint reprapltd-kicad:Arduino_UNO_R3_Shield)
       (datasheet https://www.arduino.cc/en/Main/arduinoBoardUno)
-      (libsource (lib reprapltd-kicad) (part Arduino_UNO_R3_Shield) (description "Arduino UNO Microcontroller Module, release 3"))
+      (libsource (lib arduino-shield-rescue) (part Arduino_UNO_R3_Shield-reprapltd-kicad) (description ""))
       (sheetpath (names /) (tstamps /))
       (tstamp 60BE011A))
     (comp (ref J1)
@@ -134,14 +134,12 @@
       (pins
         (pin (num 1) (name ~) (type passive))
         (pin (num 2) (name ~) (type passive))))
-    (libpart (lib reprapltd-kicad) (part Arduino_UNO_R3_Shield)
-      (description "Arduino UNO Microcontroller Module, release 3")
-      (docs https://www.arduino.cc/en/Main/arduinoBoardUno)
+    (libpart (lib arduino-shield-rescue) (part Arduino_UNO_R3_Shield-reprapltd-kicad)
       (footprints
         (fp Arduino*UNO*R3*))
       (fields
         (field (name Reference) A)
-        (field (name Value) Arduino_UNO_R3_Shield)
+        (field (name Value) Arduino_UNO_R3_Shield-reprapltd-kicad)
         (field (name Footprint) reprapltd-kicad:Arduino_UNO_R3_Shield))
       (pins
         (pin (num 1) (name NC) (type NotConnected))
@@ -181,8 +179,8 @@
       (uri /usr/share/kicad/library/Connector_Generic.lib))
     (library (logical Device)
       (uri /usr/share/kicad/library/Device.lib))
-    (library (logical reprapltd-kicad)
-      (uri /home/ensab/Desktop/rrlOwncloud/RepRapLtd/Engineering/Electronics/Kicad/reprapltd-kicad.lib)))
+    (library (logical arduino-shield-rescue)
+      (uri /home/sally/ownCloud/RepRapLtd/Engineering/Internal-Projects/6DInput/RepRapLtd/Electronics/arduino-shield/arduino-shield-rescue.lib)))
   (nets
     (net (code 1) (name +5V)
       (node (ref J6) (pin 1))
