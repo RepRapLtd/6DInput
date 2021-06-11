@@ -60,3 +60,19 @@ The device connected to the Python program without modifying that (though it has
 
 This joystick may form part of the final open-source 3D mouse, but it may also be useful to people in its own right as it is very easy to print and the cost of the components is very small.
 
+## Update 2
+
+We have now added rotation about Z to that to create a device that does all possible rotations.
+
+![XYZ joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/XYZ-joystick-photo.jpg)
+
+And here is the FreeCAD design (which is [here](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Mechanics/XYZ-joystick-V1.FCStd) in the repository):
+
+![XYZ cad joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/XYZ-joystick-CAD.png)
+
+The two holes in the top are for self-tapping M2 screws to attach the device to a handle. The base will screw into the device that detects X, Y and Z translations. The FreeCAD design is here.
+
+There is a video of the device working [here in the repository](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/XYZ-joystick.mp4) 
+
+
+
