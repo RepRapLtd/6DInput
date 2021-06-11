@@ -72,7 +72,7 @@ And here is the FreeCAD design (which is [here](https://github.com/RepRapLtd/6DI
 
 The two holes in the top are for self-tapping M2 screws to attach the device to a handle. The base will screw into the device that detects X, Y and Z translations. The FreeCAD design is here.
 
-There is a video of the device working [here in the repository](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/XYZ-joystick.mp4) 
+There is a video of the device working [here in the repository](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/XYZ-joystick.mp4).
 
 
 
