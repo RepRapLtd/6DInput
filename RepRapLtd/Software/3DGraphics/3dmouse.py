@@ -28,7 +28,8 @@ arduinoPort = '/dev/ttyUSB0'
 
 # Swap directions if needs be
 
-sense = np.array([1, -1, -1])
+sense = np.array([-1, -1, -1, 1, 1, 1])
+mapping = (1, 2, 0, 3, 4, 5)
 
 class OS3DMouse:
 
@@ -38,12 +39,14 @@ class OS3DMouse:
   self.v0 = self.GetHallReadings()
 
  def GetHallReadings(self):
-  self.usb.write(str.encode('3\n'))
+  self.usb.write(str.encode('6\n'))
   data = self.usb.readline()
   data = str(data.decode('ascii'))
   data = re.findall('\d+', data)
-  data =  np.array([int(data[0]), int(data[1]), int(data[2])])
-  return data
+  result =  np.zeros(shape=(6))
+  for i in range(6):
+    result[i] = int(data[mapping[i]])
+  return result
 
  def Movement(self):
   v = np.subtract(self.v0, self.GetHallReadings())
@@ -63,13 +66,16 @@ class model:
         self.vertices = vector(GLfloat, *vertices)
         self.colourMatrix = vector(GLfloat, *colorMatrix)
         self.index = vector(GLuint, *index)
-        self.angle = np.array([0, 0, 0])
-        self.position = np.array([0, 0, 0])
+        self.angle = np.array([0.0, 0.0, 0.0])
+        self.position = np.array([0.0, 0.0, 0.0])
         self.mouse = mouse
 
     def update(self):
-        self.angle = np.remainder(np.add(self.angle, self.mouse.Movement()), 360)
-        #self.position = np.add(self.position, self.mouse.Movement())
+        move = self.mouse.Movement()
+        a = np.array([move[0], move[1], move[2]])
+        p = np.array([move[3], move[4], move[5]])
+        self.angle = np.remainder(np.add(self.angle, a), 360)
+        self.position = np.add(self.position, np.multiply(p, 1.0/8.0))
 
 
     def draw(self):
@@ -79,7 +85,7 @@ class model:
         glRotatef(self.angle[0], 1, 0, 0)
         glRotatef(self.angle[1], 0, 1, 0)
         glRotatef(self.angle[2], 0, 0, 1)
-        #glTranslatef(self.position[0], self.position[1], self.position[2])
+        glTranslatef(self.position[0], self.position[1], self.position[2])
 
         glEnableClientState(GL_VERTEX_ARRAY)
         glEnableClientState(GL_COLOR_ARRAY)
