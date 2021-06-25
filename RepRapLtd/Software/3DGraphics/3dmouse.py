@@ -26,10 +26,12 @@ import numpy as np
 
 arduinoPort = '/dev/ttyUSB0'
 
+axes = ('X', 'Y', 'Z', 'Rx', 'Ry', 'Rz')
+
 # Swap directions if needs be
 
-sense = np.array([-1, -1, -1, 1, 1, 1])
-mapping = (1, 2, 0, 3, 4, 5)
+sense = np.array([1, 1, 1, 1, 1, 1])
+mapping = (0, 1, 2, 3, 4, 5)
 
 class OS3DMouse:
 
@@ -37,6 +39,7 @@ class OS3DMouse:
   self.usb = serial.Serial(port,115200,timeout=0.1)
   time.sleep(3) # Why so long???
   self.v0 = self.GetHallReadings()
+  print("Mouse initialised: ", self.v0)
 
  def GetHallReadings(self):
   self.usb.write(str.encode('6\n'))
@@ -51,8 +54,23 @@ class OS3DMouse:
  def Movement(self):
   v = np.subtract(self.v0, self.GetHallReadings())
   v = np.multiply(v, sense)
-  v = np.multiply(v, 1.0/8.0).astype(int)
+  v = np.multiply(v, 1.0/2.0).astype(int)
   return v
+
+ def Sample(self):
+  d2 = -1.0
+  big2 = 4.0
+  mBig = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+  while d2 < big2:
+   m = self.Movement()
+   print(m)
+   d2 = np.sum(m**2)
+   print(d2)
+   if d2 > big2:
+    big2 = d2
+    mBig = m
+  return mBig
+
 
 
 # return a ctype array - GLfloat, GLuint
@@ -120,9 +138,6 @@ def setup():
     glEnable(GL_DEPTH_TEST)
 
 
-win = window.Window(fullscreen=False, vsync=True, resizable=True, height=600, width=600)
-mWorld = world()
-
 cube = (
     3, 3, 3, #0
     -3, 3, 3, #1
@@ -155,7 +170,16 @@ index = (
     4, 7, 6, 5  #back face
 )
 
+
 mouse = OS3DMouse(arduinoPort)
+samples = 4
+for i in range(10):
+ print(mouse.Movement())
+ time.sleep(1)
+
+'''
+win = window.Window(fullscreen=False, vsync=True, resizable=True, height=600, width=600)
+mWorld = world()
 obj = model(cube, colour, index, mouse)
 mWorld.addModel(obj)
 
@@ -178,3 +202,4 @@ def on_draw():
 pyglet.clock.schedule(mWorld.update)
 setup()
 pyglet.app.run()
+'''
