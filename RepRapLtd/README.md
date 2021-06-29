@@ -75,4 +75,24 @@ The two holes in the top are for self-tapping M2 screws to attach the device to 
 There is a video of the device working [here in the repository](https://github.com/RepRapLtd/6DInput/tree/main/RepRapLtd/Pictures/XYZ-joystick.mp4).
 
 
+## Update 3
+
+Encouraged by that we decided to barge ahead and add three translation axes to the three rotations that worked so nicely. "This won't work because of crosstalk and because it'll have forces too off-centre," we thought. "But we'll do it anyway."
+
+And we were right. Don't build this device...
+
+![XYZ joystick](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/v1-combined.jpg)
+
+On the left is the CAD design, and on the right the built device. We added three of our translation sensors at the very top of this document to the working rotation joystick above. They all had to be chained, of course - the forces had to be transmitted from the handle (the cylinder on top) through each axis in turn to the fixed base.
+
+The joystick continued to work, but the device was stiff and inacurate in translation measurement, as we had predicted.
+
+The reason we made it even though we thought it might not work was because it has a separate sensor for each of the six types of translation and rotation movement that we need to measure: *X, Y, Z, Rx, Ry,* and *Rz*. This (if it HAD worked) would make the analysis and transmission of the six signals very easy.
+
+But it is now obvious that we need to make a combined device with very simple mechanics, but where we have to unravel the separate signals we want using software because each sensor will be responding to all the inputs (allbeit differently in each case). Here is the next design:
+
+![disc design](https://github.com/RepRapLtd/6DInput/blob/main/RepRapLtd/Pictures/disc-1.png)
+
+The magnets are green and the sensors blue. The yellow cylinders are springs that allow the top handle to be moved with all six degrees of freedom. Clearly any movement will produce a change in the output of all the sensors, so this has to be disentangled. We could take the lazy way out and throw a small neural network at the problem, which would probably work. But initially we will try to be a bit more analytical and create a direct mapping from the six input signals to the six output signals required by vector analysis in 6D space.
+
 
