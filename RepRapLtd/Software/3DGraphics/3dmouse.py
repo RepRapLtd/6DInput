@@ -173,7 +173,7 @@ index = (
 
 mouse = OS3DMouse(arduinoPort)
 samples = 4
-for i in range(10):
+while True:
  print(mouse.Movement())
  time.sleep(1)
 
