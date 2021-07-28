@@ -2,7 +2,7 @@
 
 ## A Project to create open-source 3D printed 6 DoF input devices
 
-Note the plural ('6DInputs' and 'devices') in the headings. We would like several designs to be created here, not just one. Anyone can either contribute a new design or improve or correct an existing one.
+Note  the plural ('6DInputs' and 'devices') in the headings. We would like several designs to be created here, not just one. Anyone can either contribute a new design or improve or correct an existing one.
 
 ### Development
 
