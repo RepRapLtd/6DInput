@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="004ac0c7-2f58-471e-ab09-de33b561caeb" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/3DGraphics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/3DGraphics.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/3dmouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/3dmouse.py" afterDir="false" />
     </list>
@@ -23,6 +28,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="3dmouse" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">

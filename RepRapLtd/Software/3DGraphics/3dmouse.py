@@ -52,9 +52,8 @@ class OS3DMouse:
   return result
 
  def Movement(self):
-  v = np.subtract(self.v0, self.GetHallReadings())
+  v = np.subtract(self.GetHallReadings(), self.v0)
   v = np.multiply(v, sense)
-  v = np.multiply(v, 1.0/2.0).astype(int)
   return v
 
  def Sample(self):
@@ -84,17 +83,19 @@ class model:
         self.vertices = vector(GLfloat, *vertices)
         self.colourMatrix = vector(GLfloat, *colorMatrix)
         self.index = vector(GLuint, *index)
-        self.angle = np.array([0.0, 0.0, 0.0])
-        self.position = np.array([0.0, 0.0, 0.0])
+        self.Recentre()
         self.mouse = mouse
 
     def update(self):
         move = self.mouse.Movement()
-        a = np.array([move[0], move[1], move[2]])
-        p = np.array([move[3], move[4], move[5]])
+        a = np.multiply(np.array([move[0], move[1], move[2]]), 1.0/20.0)
+        p = np.multiply(np.array([move[3], move[4], move[5]]), 1.0/60.0)
         self.angle = np.remainder(np.add(self.angle, a), 360)
-        self.position = np.add(self.position, np.multiply(p, 1.0/8.0))
+        self.position = np.add(self.position, p)
 
+    def Recentre(self):
+        self.angle = np.array([0.0, 0.0, 0.0])
+        self.position = np.array([0.0, 0.0, 0.0])
 
     def draw(self):
         glMatrixMode(GL_MODELVIEW)
@@ -120,6 +121,7 @@ class model:
 class world:
     def __init__(self):
         self.element = []
+        self.callCount = 0
 
     def update(self, dt):
         for obj in self.element:
@@ -129,7 +131,11 @@ class world:
         self.element.append(model)
 
     def draw(self):
+        self.callCount += 1
         for obj in self.element:
+            if self.callCount >= 200:
+                obj.Recentre()
+                self.callCount = 0
             obj.draw()
 
 
@@ -170,14 +176,17 @@ index = (
     4, 7, 6, 5  #back face
 )
 
-
 mouse = OS3DMouse(arduinoPort)
+
+'''
 samples = 4
 while True:
  print(mouse.Movement())
  time.sleep(1)
-
 '''
+
+
+
 win = window.Window(fullscreen=False, vsync=True, resizable=True, height=600, width=600)
 mWorld = world()
 obj = model(cube, colour, index, mouse)
@@ -202,4 +211,4 @@ def on_draw():
 pyglet.clock.schedule(mWorld.update)
 setup()
 pyglet.app.run()
-'''
+
