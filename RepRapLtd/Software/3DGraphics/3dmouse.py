@@ -23,6 +23,7 @@ import serial
 import re
 import time
 import numpy as np
+import math as maths
 
 arduinoPort = '/dev/ttyUSB0'
 
@@ -38,8 +39,12 @@ class OS3DMouse:
  def __init__(self, port):
   self.usb = serial.Serial(port,115200,timeout=0.1)
   time.sleep(3) # Why so long???
-  self.v0 = self.GetHallReadings()
+  self.ReZero()
+  self.SetVectors()
   print("Mouse initialised: ", self.v0)
+
+ def ReZero(self):
+  self.v0 = self.GetHallReadings()
 
  def GetHallReadings(self):
   self.usb.write(str.encode('6\n'))
@@ -60,15 +65,46 @@ class OS3DMouse:
   d2 = -1.0
   big2 = 4.0
   mBig = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-  while d2 < big2:
+  while d2 < 4000:
    m = self.Movement()
-   print(m)
    d2 = np.sum(m**2)
-   print(d2)
    if d2 > big2:
     big2 = d2
     mBig = m
   return mBig
+
+ def SetVectors(self):
+  PXr = np.array([58.0, -3.0, -24.0, 2.0, 7.0, -2.0])
+  d2 = np.sum(PXr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  PXr = np.multiply(PXr, d2)
+
+  MXr = np.array([-29.0,   1.0,  56.0,  -4.0,  -5.0,   2.0])
+  d2 = np.sum(MXr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  MXr = np.multiply(MXr, d2)
+
+  PYr = np.array([-20.0,   2.0,  -5.0,   0.0,  60.0,  -3.0])
+  d2 = np.sum(PYr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  PYr = np.multiply(PYr, d2)
+
+  MYr = np.array([55.0,  -4.0,   8.0,   1.0, -31.0,   3.0])
+  d2 = np.sum(MYr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  MYr = np.multiply(MYr, d2)
+
+  PZr = np.array([-43.0,  -4.0, -34.0,  -4.0, -32.0,  -3.0])
+  d2 = np.sum(PZr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  PZr = np.multiply(PZr, d2)
+
+  MZr = np.array([-32.0,  27.0, -28.0,  30.0,  -7.0,  28.0])
+  d2 = np.sum(MZr**2)
+  d2 = 1.0/maths.sqrt(d2)
+  MZr = np.multiply(MZr, d2)
+  
+  self.Rotations = [PXr, MXr, PYr, MYr, PZr, MZr]
 
 
 
@@ -178,11 +214,37 @@ index = (
 
 mouse = OS3DMouse(arduinoPort)
 
-'''
-samples = 4
-while True:
- print(mouse.Movement())
- time.sleep(1)
+
+print("+Xr")
+vector = mouse.Sample()
+print(vector)
+time.sleep(2)
+mouse.ReZero()
+print("-Xr")
+vector = mouse.Sample()
+print(vector)
+time.sleep(2)
+mouse.ReZero()
+print("+Yr")
+vector = mouse.Sample()
+print(vector)
+time.sleep(2)
+mouse.ReZero()
+print("-Yr")
+vector = mouse.Sample()
+print(vector)
+time.sleep(2)
+mouse.ReZero()
+print("+Zr")
+vector = mouse.Sample()
+print(vector)
+time.sleep(2)
+mouse.ReZero()
+print("-Zr")
+vector = mouse.Sample()
+print(vector)
+mouse.ReZero()
+
 '''
 
 
@@ -211,4 +273,4 @@ def on_draw():
 pyglet.clock.schedule(mWorld.update)
 setup()
 pyglet.app.run()
-
+'''
