@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1 (c68e22c387, 2021-05-23)"
+   sodipodi:docname="layout.svg"
+   inkscape:export-filename="/home/davidwright/Documents/6DInput/RepRapLtd/Ideas/Hall Effect Layout/layout.png"
+   inkscape:export-xdpi="300"
+   inkscape:export-ydpi="300"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.1997092"
+     inkscape:cx="276.17287"
+     inkscape:cy="303.4492"
+     inkscape:window-width="2560"
+     inkscape:window-height="1376"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <ellipse
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.191"
+       id="path31"
+       ry="55.507401"
+       rx="57.284248"
+       cy="68.0224"
+       cx="87.599022" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103"
+       width="12.760719"
+       height="11.666013"
+       x="81.63028"
+       y="13.893312" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103-3"
+       width="12.760719"
+       height="11.666013"
+       x="81.63028"
+       y="33.623478" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103-3-6"
+       width="12.760719"
+       height="11.666013"
+       x="126.90742"
+       y="48.675133" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103-3-7"
+       width="12.760719"
+       height="11.666013"
+       x="127.21588"
+       y="71.139076" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103-3-3"
+       width="12.761"
+       height="11.666013"
+       x="92.628578"
+       y="103.00296"
+       inkscape:export-filename="/home/davidwright/Documents/6DInput/RepRapLtd/Ideas/Hall Effect Layout/layout.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300" />
+    <rect
+       style="fill:#cccccc;stroke:#000000;stroke-width:0.177768"
+       id="rect103-3-2"
+       width="12.760719"
+       height="11.666013"
+       x="51.661816"
+       y="60.322681" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="84.393295"
+       y="23.432131"
+       id="text3952"><tspan
+         sodipodi:role="line"
+         id="tspan3950"
+         style="stroke-width:0.264583"
+         x="84.393295"
+         y="23.432131">A</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="84.164581"
+       y="43.371094"
+       id="text14522"><tspan
+         sodipodi:role="line"
+         id="tspan14520"
+         style="stroke-width:0.264583"
+         x="84.164581"
+         y="43.371094">B</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="128.96014"
+       y="58.286404"
+       id="text16704"><tspan
+         sodipodi:role="line"
+         id="tspan16702"
+         style="stroke-width:0.264583"
+         x="128.96014"
+         y="58.286404">C</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="129.29156"
+       y="80.129082"
+       id="text18160"><tspan
+         sodipodi:role="line"
+         id="tspan18158"
+         style="stroke-width:0.264583"
+         x="129.29156"
+         y="80.129082">D</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="54.723816"
+       y="70.013321"
+       id="text18626"><tspan
+         sodipodi:role="line"
+         id="tspan18624"
+         style="stroke-width:0.264583"
+         x="54.723816"
+         y="70.013321">E</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.5833px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="95.795853"
+       y="112.40247"
+       id="text20082"
+       inkscape:export-filename="/home/davidwright/Documents/6DInput/RepRapLtd/Ideas/Hall Effect Layout/layout.png"
+       inkscape:export-xdpi="300"
+       inkscape:export-ydpi="300"><tspan
+         sodipodi:role="line"
+         id="tspan20080"
+         style="stroke-width:0.264583"
+         x="95.795853"
+         y="112.40247">F</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.191;stroke-miterlimit:4;stroke-dasharray:1.528, 1.528;stroke-dashoffset:0"
+       id="rect47"
+       width="15.535717"
+       height="16.026564"
+       x="40.107967"
+       y="58.142406" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.191;stroke-miterlimit:4;stroke-dasharray:1.528, 1.528;stroke-dashoffset:0"
+       id="rect47-3"
+       width="15.535717"
+       height="16.026564"
+       x="80.242775"
+       y="21.961109" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.191;stroke-miterlimit:4;stroke-dasharray:1.528, 1.528;stroke-dashoffset:0"
+       id="rect47-6"
+       width="15.535717"
+       height="16.026564"
+       x="125.46568"
+       y="58.142406" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.191;stroke-miterlimit:4;stroke-dasharray:1.528, 1.528;stroke-dashoffset:0"
+       id="rect47-7"
+       width="15.535717"
+       height="16.026564"
+       x="80.242775"
+       y="100.94955" />
+  </g>
+</svg>
