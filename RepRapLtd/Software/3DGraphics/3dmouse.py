@@ -16,6 +16,8 @@ Uses code from https://stackoverflow.com/questions/16263727/3d-cube-didnt-show-c
 
 '''
 
+
+import sys
 import pyglet
 from pyglet.gl import *
 from pyglet import window
@@ -31,7 +33,7 @@ axes = ('X', 'Y', 'Z', 'Rx', 'Ry', 'Rz')
 
 # Swap directions if needs be
 
-sense = np.array([1, 1, 1, 1, 1, 1])
+#sense = np.array([1, 1, 1, 1, 1, 1])
 mapping = (0, 1, 2, 3, 4, 5)
 
 class OS3DMouse:
@@ -58,8 +60,8 @@ class OS3DMouse:
 
  def Movement(self):
   v = np.subtract(self.GetHallReadings(), self.v0)
-  v = np.multiply(v, sense)
-  return v
+  v = self.FindVector(v)
+  return np.array([v[0], v[1], v[2], 0.0, 0.0, 0.0])
 
  def Sample(self):
   d2 = -1.0
@@ -75,37 +77,57 @@ class OS3DMouse:
 
  def SetVectors(self):
   PXr = np.array([58.0, -3.0, -24.0, 2.0, 7.0, -2.0])
-  d2 = np.sum(PXr**2)
+  d2 = np.inner(PXr, PXr)
   d2 = 1.0/maths.sqrt(d2)
   PXr = np.multiply(PXr, d2)
 
   MXr = np.array([-29.0,   1.0,  56.0,  -4.0,  -5.0,   2.0])
-  d2 = np.sum(MXr**2)
+  d2 = np.inner(MXr, MXr)
   d2 = 1.0/maths.sqrt(d2)
   MXr = np.multiply(MXr, d2)
 
   PYr = np.array([-20.0,   2.0,  -5.0,   0.0,  60.0,  -3.0])
-  d2 = np.sum(PYr**2)
+  d2 = np.inner(PYr, PYr)
   d2 = 1.0/maths.sqrt(d2)
   PYr = np.multiply(PYr, d2)
 
   MYr = np.array([55.0,  -4.0,   8.0,   1.0, -31.0,   3.0])
-  d2 = np.sum(MYr**2)
+  d2 = np.inner(MYr, MYr)
   d2 = 1.0/maths.sqrt(d2)
   MYr = np.multiply(MYr, d2)
 
   PZr = np.array([-43.0,  -4.0, -34.0,  -4.0, -32.0,  -3.0])
-  d2 = np.sum(PZr**2)
+  d2 = np.inner(PZr, PZr)
   d2 = 1.0/maths.sqrt(d2)
   PZr = np.multiply(PZr, d2)
 
   MZr = np.array([-32.0,  27.0, -28.0,  30.0,  -7.0,  28.0])
-  d2 = np.sum(MZr**2)
+  d2 = np.inner(MZr, MZr)
   d2 = 1.0/maths.sqrt(d2)
   MZr = np.multiply(MZr, d2)
   
   self.Rotations = [PXr, MXr, PYr, MYr, PZr, MZr]
+  self.ROut = [
+      np.array([1, 0, 0]),
+      np.array([-1, 0, 0]),
+      np.array([0, 0, -1]),
+      np.array([0, 0, 1]),
+      np.array([0, 1, 0]),
+      np.array([0, -1, 0])
+  ]
 
+ def FindVector(self, v):
+  max = -sys.float_info.max
+  ip = maths.sqrt(np.inner(v, v))
+  if ip < 0.001:
+      return np.array([0, 0, 0])
+  vN = np.multiply(v, 1.0/ip)
+  for r in range(self.Rotations.__len__()):
+   ipv = np.inner(vN, self.Rotations[r])
+   if ipv > max:
+    out = self.ROut[r]
+    max = ipv
+  return np.multiply(out, ip)
 
 
 # return a ctype array - GLfloat, GLuint
@@ -169,9 +191,9 @@ class world:
     def draw(self):
         self.callCount += 1
         for obj in self.element:
-            if self.callCount >= 200:
-                obj.Recentre()
-                self.callCount = 0
+            #if self.callCount >= 200:
+            #    obj.Recentre()
+            #    self.callCount = 0
             obj.draw()
 
 
@@ -214,7 +236,7 @@ index = (
 
 mouse = OS3DMouse(arduinoPort)
 
-
+'''
 print("+Xr")
 vector = mouse.Sample()
 print(vector)
@@ -273,4 +295,4 @@ def on_draw():
 pyglet.clock.schedule(mWorld.update)
 setup()
 pyglet.app.run()
-'''
+
