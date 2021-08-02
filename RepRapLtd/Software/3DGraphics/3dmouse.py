@@ -38,11 +38,12 @@ mapping = (0, 1, 2, 3, 4, 5)
 
 class OS3DMouse:
 
- def __init__(self, port):
+ def __init__(self, port, mouseCalibrationFileName):
   self.usb = serial.Serial(port,115200,timeout=0.1)
   time.sleep(3) # Why so long???
   self.ReZero()
-  self.SetVectors()
+  self.directions = ['+Rx', '-Rx', '+Ry', '-Ry', '+Rz', '-Rz'] #, '+X', '-X', '+Y', '-Y', '+Z', '-Z']
+  self.SetVectors(mouseCalibrationFileName)
   print("Mouse initialised: ", self.v0)
 
  def ReZero(self):
@@ -52,6 +53,7 @@ class OS3DMouse:
   self.usb.write(str.encode('6\n'))
   data = self.usb.readline()
   data = str(data.decode('ascii'))
+  #print(data)
   data = re.findall('\d+', data)
   result =  np.zeros(shape=(6))
   for i in range(6):
@@ -67,46 +69,44 @@ class OS3DMouse:
   d2 = -1.0
   big2 = 4.0
   mBig = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-  while d2 < 4000:
+  while d2 < 2000:
    m = self.Movement()
    d2 = np.sum(m**2)
    if d2 > big2:
     big2 = d2
     mBig = m
+  print("Let go...")
+  time.sleep(2)
+  self.ReZero()
   return mBig
 
- def SetVectors(self):
-  PXr = np.array([58.0, -3.0, -24.0, 2.0, 7.0, -2.0])
-  d2 = np.inner(PXr, PXr)
-  d2 = 1.0/maths.sqrt(d2)
-  PXr = np.multiply(PXr, d2)
+ def Calibrate(self, mouseCalibrationFileName, samples):
+  self.directionVectors = []
+  print("Mouse calibration. Move in...")
+  for direction in self.directions:
+   print("---------")
+   sum = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+   for s in range(samples):
+    print(direction)
+    sum = np.add(sum, self.Sample())
+   sum = np.multiply(sum, 1.0/samples)
+   self.directionVectors.append(sum)
+  file = open(mouseCalibrationFileName, "w")
+  print("Lengths:")
+  for v in self.directionVectors:
+   length = maths.sqrt(np.inner(v,v))
+   print(length)
+   file.write(np.array2string(v, max_line_width=1000)[1:-1] + '\n')
+  file.close()
 
-  MXr = np.array([-29.0,   1.0,  56.0,  -4.0,  -5.0,   2.0])
-  d2 = np.inner(MXr, MXr)
-  d2 = 1.0/maths.sqrt(d2)
-  MXr = np.multiply(MXr, d2)
-
-  PYr = np.array([-20.0,   2.0,  -5.0,   0.0,  60.0,  -3.0])
-  d2 = np.inner(PYr, PYr)
-  d2 = 1.0/maths.sqrt(d2)
-  PYr = np.multiply(PYr, d2)
-
-  MYr = np.array([55.0,  -4.0,   8.0,   1.0, -31.0,   3.0])
-  d2 = np.inner(MYr, MYr)
-  d2 = 1.0/maths.sqrt(d2)
-  MYr = np.multiply(MYr, d2)
-
-  PZr = np.array([-43.0,  -4.0, -34.0,  -4.0, -32.0,  -3.0])
-  d2 = np.inner(PZr, PZr)
-  d2 = 1.0/maths.sqrt(d2)
-  PZr = np.multiply(PZr, d2)
-
-  MZr = np.array([-32.0,  27.0, -28.0,  30.0,  -7.0,  28.0])
-  d2 = np.inner(MZr, MZr)
-  d2 = 1.0/maths.sqrt(d2)
-  MZr = np.multiply(MZr, d2)
-  
-  self.Rotations = [PXr, MXr, PYr, MYr, PZr, MZr]
+ def SetVectors(self, mouseCalibrationFileName):
+  file = open(mouseCalibrationFileName, "r")
+  self.Rotations = []
+  lines = file.readlines()
+  for line in lines:
+   self.Rotations.append(np.fromstring(line, sep=' '))
+  for r in self.Rotations:
+   print(r)
   self.ROut = [
       np.array([1, 0, 0]),
       np.array([-1, 0, 0]),
@@ -234,40 +234,12 @@ index = (
     4, 7, 6, 5  #back face
 )
 
-mouse = OS3DMouse(arduinoPort)
 
-'''
-print("+Xr")
-vector = mouse.Sample()
-print(vector)
-time.sleep(2)
-mouse.ReZero()
-print("-Xr")
-vector = mouse.Sample()
-print(vector)
-time.sleep(2)
-mouse.ReZero()
-print("+Yr")
-vector = mouse.Sample()
-print(vector)
-time.sleep(2)
-mouse.ReZero()
-print("-Yr")
-vector = mouse.Sample()
-print(vector)
-time.sleep(2)
-mouse.ReZero()
-print("+Zr")
-vector = mouse.Sample()
-print(vector)
-time.sleep(2)
-mouse.ReZero()
-print("-Zr")
-vector = mouse.Sample()
-print(vector)
-mouse.ReZero()
 
-'''
+
+
+mouse = OS3DMouse(arduinoPort, "mouseCalibration.txt")
+#mouse.Calibrate("mouseCalibration.txt", 5)
 
 
 
@@ -295,4 +267,5 @@ def on_draw():
 pyglet.clock.schedule(mWorld.update)
 setup()
 pyglet.app.run()
+
 
