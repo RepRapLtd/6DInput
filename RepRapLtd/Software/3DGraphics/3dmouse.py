@@ -36,6 +36,14 @@ axes = ('X', 'Y', 'Z', 'Rx', 'Ry', 'Rz')
 #sense = np.array([1, 1, 1, 1, 1, 1])
 mapping = (0, 1, 2, 3, 4, 5)
 
+wrightMatrix = np.matrix([
+ [-1, -1, -1, -1, 1, 1],
+ [1, -1, 1, -1, -1, -1],
+ [-1, -1, -1, -1, -1, -1],
+ [1, 1, 0, 0, 0, -1],
+ [0, 0, 1, 1, -1, 0],
+ [-1, -1, 1, -1, -1, 1] ])
+
 class OS3DMouse:
 
  def __init__(self, port, mouseCalibrationFileName):
