@@ -55,7 +55,7 @@ class OS3DMouse:
   print("Mouse initialised: ", self.v0)
 
  def ReZero(self):
-  self.v0 = self.GetHallReadings()
+  self.v0 = self.GetHallReadings()[0]
 
  def GetHallReadings(self):
   self.usb.write(str.encode('6\n'))
@@ -63,15 +63,21 @@ class OS3DMouse:
   data = str(data.decode('ascii'))
   #print(data)
   data = re.findall('\d+', data)
+  reZero = int(data[6])
+  if reZero == 0:
+   self.ReZero()
   result =  np.zeros(shape=(6))
   for i in range(6):
     result[i] = int(data[mapping[i]])
-  return result
+  return (result, reZero)
 
  def Movement(self):
-  v = np.subtract(self.GetHallReadings(), self.v0)
-  v = self.FindVector(v)
-  return np.array([v[0], v[1], v[2], 0.0, 0.0, 0.0])
+  hall = self.GetHallReadings()
+  v = np.subtract(hall[0], self.v0)
+  v = np.matmul(wrightMatrix, v)
+  #print(v)
+  #v = self.FindVector(v)
+  return (np.array([v[0], v[1], v[2], 0.0, 0.0, 0.0]), hall[1])
 
  def Sample(self):
   d2 = -1.0
@@ -113,8 +119,8 @@ class OS3DMouse:
   lines = file.readlines()
   for line in lines:
    self.Rotations.append(np.fromstring(line, sep=' '))
-  for r in self.Rotations:
-   print(r)
+  #for r in self.Rotations:
+  # print(r)
   self.ROut = [
       np.array([1, 0, 0]),
       np.array([-1, 0, 0]),
@@ -153,11 +159,15 @@ class model:
         self.mouse = mouse
 
     def update(self):
-        move = self.mouse.Movement()
+        mMove = self.mouse.Movement()
+        move = mMove[0]
         a = np.multiply(np.array([move[0], move[1], move[2]]), 1.0/20.0)
         p = np.multiply(np.array([move[3], move[4], move[5]]), 1.0/60.0)
         self.angle = np.remainder(np.add(self.angle, a), 360)
         self.position = np.add(self.position, p)
+        if mMove[1] == 0:
+         self.Recentre()
+
 
     def Recentre(self):
         self.angle = np.array([0.0, 0.0, 0.0])

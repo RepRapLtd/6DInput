@@ -17,6 +17,7 @@ Licence: GPL
 int hallPin[6] = {A0, A1, A2, A3, A4, A5};
 const int pins = 6;
 int ledPin = 13;
+int zeroPin = 12;
 
 void setup()
 {
@@ -25,6 +26,7 @@ void setup()
     pinMode(hallPin[p], INPUT);
   }
   pinMode(ledPin, OUTPUT);
+  pinMode(zeroPin, INPUT_PULLUP);
   Serial.begin(115200);
 }
 
@@ -43,6 +45,7 @@ void SendHallVoltages(int number)
     Serial.print(hallVoltage);
     Serial.print(" ");
   }
+  Serial.print(digitalRead(zeroPin));
   Serial.println();  
 }
 
