@@ -1,66 +1,41 @@
 /*
 
-Read (some) Hall sensors when prompted and return the voltages.
-
-RepRap Ltd
-https://reprapltd.com
-
-Adrian Bowyer
-9 June 2021
-
-Licence: GPL
+Read Hall sensors when prompted and return the voltages.
 
 
 */
 
+#define SENSOR_COUNT 1
 
-int hallPin[6] = {A0, A1, A2, A3, A4, A5};
-const int pins = 6;
+int hallPins[6] = {A0, A1, A2, A3, A4, A5}; 
+
 int ledPin = 13;
-int zeroPin = 12;
 
 void setup()
 {
-  for(int p = 0; p < pins; p++)
+  for(int i = 0; i < SENSOR_COUNT; i++)
   {
-    pinMode(hallPin[p], INPUT);
+    pinMode(hallPins[i], INPUT);
   }
   pinMode(ledPin, OUTPUT);
-  pinMode(zeroPin, INPUT_PULLUP);
   Serial.begin(115200);
 }
 
-void SendHallVoltages(int number)
-{
-  int hallVoltage;
-  
-  if(number <= 0)
-    number = 1;
-  if(number > pins)
-    number = pins;
-  
-  for(int p = 0; p < number; p++)
-  {
-    hallVoltage = analogRead(hallPin[p]);
-    Serial.print(hallVoltage);
-    Serial.print(" ");
-  }
-  Serial.print(digitalRead(zeroPin));
-  Serial.println();  
-}
 
 void loop()
 {
-  int number;
-  if(Serial.available() > 0)
+  for(int i = 0; i < SENSOR_COUNT; i++)
   {
-    number = Serial.read();
-    if(number != '\n')
-    {
-      number = number - '0';
-      SendHallVoltages(number);
-    }
-    while(Serial.available() > 0)
-      number = Serial.read();
+    int hallReading = analogRead(hallPins[i]);
+    Serial.print("Hall ");
+    Serial.print(i);
+    Serial.print(" reading: ");
+    Serial.print(hallReading);
+    Serial.print(", (");
+    float v = (float)hallReading*5.0/1023.0;
+    Serial.print(v);
+    Serial.println(" volts).");
   }
-}
+  
+  delay(500);
+}  
